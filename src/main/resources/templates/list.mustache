@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>방명록 목록</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>방명록 목록</h1>
+    <hr>
+    <a href="/guestbook/write">글쓰기</a>
+    <hr>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>날짜</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{author}}</td>
+                <td>{{content}}</td>
+                <td>{{createdAt}}</td>
+                <td>
+                    <form action="/guestbook/{{id}}/delete" method="post" style="display:inline;">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            {{/list}}
+            {{^list}}
+            <tr>
+                <td colspan="5">작성된 글이 없습니다.</td>
+            </tr>
+            {{/list}}
+        </tbody>
+    </table>
+</body>
+</html>
